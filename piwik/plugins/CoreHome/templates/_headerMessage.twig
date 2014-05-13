@@ -1,0 +1,37 @@
+{# testing, remove test_ from var names #}
+{% set test_latest_version_available="3.0" %}
+{% set test_piwikUrl='http://demo.piwik.org/' %}
+{% set isPiwikDemo %}{{ piwikUrl == 'http://demo.piwik.org/' or piwikUrl == 'https://demo.piwik.org/'}}{% endset %}
+
+<span id="header_message" class="{% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %}">
+    <span class="header_short">
+        {% if isPiwikDemo %}
+            {{ 'General_YouAreViewingDemoShortMessage'|translate }}
+        {% else %}
+            {{ 'General_AboutPiwikX'|translate(piwik_version) }}
+        {% endif %}
+    </span>
+
+    <span class="header_full">
+        {% if isPiwikDemo %}
+            {{ 'General_YouAreViewingDemoShortMessage'|translate }}
+            <br/>
+            {{ 'General_DownloadFullVersion'|translate("<a href='http://piwik.org/'>","</a>","<a href='http://piwik.org'>piwik.org</a>")|raw }}
+            <br/>
+        {% else %}
+            {{ 'General_PiwikIsACollaborativeProjectYouCanContributeAndDonate'|translate(
+                    "<a href='?module=Proxy&action=redirect&url=http://piwik.org' target='_blank'>",
+                    piwik_version~"</a>",
+                    "<br />",
+                    "<a target='_blank' href='?module=Proxy&action=redirect&url=http://piwik.org/contribute/'>",
+                    "</a>",
+                    '<br/>',
+                    "<a href='http://piwik.org/donate/' target='_blank'><strong><em>",
+                    "</em></strong></a>"
+                )|raw }}
+        {% endif %}
+        {% if hasSomeAdminAccess %}
+            <br/>
+        {% endif %}
+    </span>
+</span>
