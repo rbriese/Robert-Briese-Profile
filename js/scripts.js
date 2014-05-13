@@ -673,7 +673,7 @@ $(function() {
 	var $pageContent = $('<div class="page-content" data-menu-item="'+currentSubpageIndex+'" data-title="'+document.title+'" data-active="1"/>');
 	$container.children().not($mainnav).wrapAll($pageContentWrapper).wrapAll($pageContent);
 	$pageContentWrapper = $('#page-content-wrapper');
-	
+/*	
 	$mainnavItems.not('.active').children('a').each(function() {
 		var $link = $(this);
 		var request = $.ajax({
@@ -692,7 +692,7 @@ $(function() {
 			}
 		});
 	});
-	
+*/	
 	var showSubpage = function(menuIndex) {
 		
 		$mainnavItems.eq(menuIndex).add($sidenav.find('li').eq(menuIndex)).addClass('active').siblings().removeClass('active');
@@ -764,7 +764,7 @@ $(function() {
 		initContact();
 		
 		toggleContentFooterHelper();
-		searchForPageLinks();
+		//searchForPageLinks();
 		$pageContentWrapper.css({ minHeight: $pageContentWrapper.height() });
 		
 	}
@@ -779,11 +779,11 @@ $(function() {
 	});
 	
 	initLayoutHelpers();
-	searchForPageLinks();
+	//searchForPageLinks();
 	
-	if (localChrome) {
+//	if (localChrome) {
 		initContent();
-	}
+//	}
 	
 	$('body').attr('data-page-transition', settings.pageTransition);
 	
