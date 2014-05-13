@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Contact</title>
+		
+		<!-- Mobile Specific Settings -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<!-- Google Fonts: Lato -->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic">
+		
+		<!-- Icon Fonts: icomoon -->
+		<link rel="stylesheet" href="css/style.css"> 
+		
+		<!-- Icon Fonts: Entypo -->
+		<link rel="stylesheet" href="css/icons.css">
+		
+		<!-- CSS Styles -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skin-blue.css">
+		<noscript><link rel="stylesheet" href="css/no-js.css"></noscript>
+
+		<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50890980-1', 'briese-home.com');
+  ga('send', 'pageview');
+
+</script>
+
+		<!-- start Mixpanel -->
+		<script type="text/javascript">
+		(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+		mixpanel.init("c5ca18ee8506e47f54e7de947a633c0e");
+		</script>
+		<!-- end Mixpanel -->
+				
+	</head>
+	<body>
+	
+		<header id="header">
+			<h1><a href="index.html">Robert Briese</a></h1>
+			<h2>Agile Management <span class="amp">&amp;</span> SAP Consultant</h2>
+		</header>
+		
+		<div id="container">
+			
+			<nav id="mainnav" role="navigation">
+				<ul>
+					<li><a href="index.html"><i class="icon-home"></i> Home</a></li>
+					<li><a href="about-me.html"><i class="icon-user"></i> About Me</a></li>
+					<li><a href="resume.html"><i class="icon-feather"></i> Resume</a></li>
+					<li><a href="projects.html"><i class="icon-picture"></i> Projects</a></li>
+					<li class="active"><a href="contact.html"><i class="icon-mail"></i> Contact</a></li>
+<!--					<li><a href="extras.html"><i class="icon-tools"></i> Extras</a></li> -->
+				</ul>
+			</nav>
+			
+			<div class="main-content">
+				
+				<div class="address">
+					<div class="row">
+						<div class="span6">
+							<p><strong>Robert Briese</strong></p>
+						</div>
+						<div class="span6">
+							<p><i class="icon-phone"></i> <strong>Phone:</strong> +49 163 7301346</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span6">
+							<p>Hufelandstr. 11</p>
+						</div>
+						<div class="span6">
+							<p><i class="icon-mail"></i> <strong>E-mail:</strong> mail|at|briese-ssc.com</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span6">
+							<p>10407 Berlin, Germany</p>
+						</div>
+						<div class="span6">
+							<p><i class="icon-skype"></i> <strong>Skype:</strong> robertbriese</p>
+						</div>
+					</div>
+				</div>
+				
+				<p class="centered"><a class="button small popup-gmaps" href="http://maps.google.com/maps?q=Hufelandstr.11,Berlin,Germany">View my location</a></p>
+				
+				<div class="content-switch">
+					<div class="controls">
+						<h2><span>Contact form type</span></h2>
+						<ul>
+							<li>Standard</li>
+							<li>Postcard</li>
+						</ul>
+					</div>
+					<div class="panes">
+						
+						<div class="box-dark">
+							<h2 class="section-heading">Let’s talk…</h2>
+							<p class="centered explanation">There is no better way to contact me than to use this form. You should do it now.</p>
+							<form id="contact-form" action="mail/send.php" method="post" novalidate data-validate="parsley">
+								<fieldset>
+									<p class="user-data">
+										<input type="text" name="name" required placeholder="Your name">
+										<input type="email" name="email" required placeholder="Your e-mail address">
+									</p>
+									<p class="message">
+										<textarea name="message" placeholder="Your message" required></textarea>
+									</p>
+									<p class="submit"><button type="submit" class="button large">Send message</button></p>
+								</fieldset>
+								<div class="alert success hidden">
+									<p>Your message has been sent. Thank you!</p>
+								</div>
+								<div class="alert error hidden">
+									<p>Sorry, your message has not been sent. Please try again.</p>
+								</div>
+							</form>
+						</div>
+						
+						<div id="postcard-container">
+							<div>
+								<div id="postcard">
+									<form action="mail/send.php" method="post" novalidate data-validate="parsley">
+										<h2>Message:</h2>
+										<fieldset>
+											<p>To: Robert Briese</p>
+											<p><label>From: <input type="text" name="name" required placeholder="Your name"></label></p>
+											<p><label>Return e-mail: <input type="email" name="email" required placeholder="Your e-mail address"></label></p>
+											<textarea name="message" required></textarea>
+										</fieldset>
+										<button type="submit">Send</button>
+										<div class="stamp">
+											<div class="v1"></div>
+											<div class="v2"></div>
+											<div class="v3"></div>
+										</div>
+										<div class="stamp-mark"></div>
+									</form>
+								</div>
+							</div>
+							<div class="alert success hidden">
+								<p>Your message has been sent. Thank you!</p>
+							</div>
+							<div class="alert error hidden">
+								<p>Sorry, your message has not been sent. Please try again.</p>
+							</div>
+						</div>
+						
+					</div>
+				</div> <!-- /content-switch -->
+					
+			</div> <!-- /main-content -->
+		
+		</div> <!-- /container -->
+		
+		<footer id="footer">
+			<ul class="elsewhere">
+				<li><a href="https://twitter.com/rbriese"><i class="icon-twitter"></i> Follow me on Twitter</a></li>
+<!--				<li><a href="http://dribbble.com/Nazcain"><i class="icon-dribbble"></i> Find me on Dribbble</a></li>
+				<li><a href="http://themeforest.net/user/Lebensform"><i class="icon-basket"></i> Buy this template</a></li> -->
+			</ul>
+			<p>Copyright Robert Briese, Briese SSC. All rights reserved.</p>
+		</footer> <!-- /footer -->
+		
+		<!-- JavaScript -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/parsley.min.js"></script>
+		<script src="js/jquery.backstretch.min.js"></script>
+		<script src="js/jquery.cycle2.min.js"></script>
+		<script src="js/jquery.cycle2.swipe.min.js"></script>
+		<script src="js/jquery.tooltipster.min.js"></script>
+		<script src="js/jquery.mixitup.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/jquery.placeholder.min.js"></script>
+		<script src="js/twitter-fetcher.min.js"></script>
+		<script src="js/scripts.js"></script>
+
+		<script type="text/javascript">
+   		 mixpanel.track("Contact page visit");
+		</script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.briese-home.com/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+
+</script>
+<noscript><p><img src="http://www.briese-home.com/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+	
+	</body>
+</html>
