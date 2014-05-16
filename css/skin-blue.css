@@ -1839,6 +1839,9 @@ textarea.placeholder {
 #mainnav li a:hover {
   text-decoration: none;
 }
+#mainnav li.hidden{
+  display: none;
+}
 #mainnav [class^=icon-] {
   width: 100%;
   margin: 0;
