@@ -22,17 +22,16 @@
 		<noscript><link rel="stylesheet" href="css/no-js.css"></noscript>
 
 		<!-- Google Analytics -->
-		<!-- Google Analytics -->
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		  ga('create', 'UA-2741754-1', 'briese-ssc.com');
-		  ga('send', 'pageview');
-		</script>
+  ga('create', 'UA-50890980-1', 'briese-home.com');
+  ga('send', 'pageview');
 
+</script>
 			
 	</head>
 	<body>
@@ -73,8 +72,7 @@
 							<h2>Use of Web Analysis Software</h2>
 							To improve the structure and the data we offer on our website, we use the open source web analysis software "Piwik". Our evaluations will be based on summary or averaged information amalgamated for the large numbers of people visiting the vebsite. The data provided by Piwik won't be matched with any individual's data from other sources, and we won't share the data provided by Piwik with third parties (exept, perhaps, summary information such as total number of hits).
 							Data collected by Piwik includes IP, time and duration of the visit, which pages are visited, the used browser and add-ons/plugins, search-engines and referrer. While Piwik does use a cookie to distinguish between individual visitors, the collected data doesn't allow to identify individuals.
-							Our Piwik setup respects the "do not track" browser setting, and you may also opt out explicitly from being tracked by piwik using the following control:<br>
-							<iframe style="border: 0; height: 120px; width: 854px;" src="http://www.briese-home.com/piwik/index.php?module=CoreAdminHome&action=optOut&language=en"></iframe>
+							Our Piwik setup respects the "do not track" browser setting, and you may also opt out explicitly from being tracked by piwik using the following control:
 							<h2>Security</h2>
 							We take all the necessary technical and organisational security measures to protect your personal data from loss and misuse. Your data is stored in a secure operating environment that is not accessible to the public. If you communicate with us via e-mail, please note that the confidentiality of the information is not guaranteed. The contents of e-mails can be intercepted by third parties. In case of doubt we therefore recommend to send confidential information only by mail.
 							<h2>Right of access to personal data</h2>
@@ -88,7 +86,24 @@
 						<p>If you have questions regarding the processing of personal data or in case of requests for information, suggestions or complaints, please contact directly mail(at)briese-ssc.com</p>		
 					</div>
 				</div>
-							
+				
+
+			<!-- Piwik -->
+			<script type="text/javascript">
+			  var _paq = _paq || [];
+			  _paq.push(['trackPageView']);
+			  _paq.push(['enableLinkTracking']);
+			  (function() {
+			    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.briese-home.com/piwik/";
+			    _paq.push(['setTrackerUrl', u+'piwik.php']);
+			    _paq.push(['setSiteId', 1]);
+			    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+			    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			  })();
+			</script>
+			<noscript><p><img src="http://www.briese-home.com/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+			<!-- End Piwik Code -->				
+
 			</div> <!-- /main-content -->
 		
 		</div> <!-- /container -->
@@ -115,29 +130,6 @@
 		<script src="js/twitter-fetcher.min.js"></script>
 		<script src="js/scripts.js"></script>
 
-		<!-- Piwik -->
-		<script type="text/javascript">
-		  var _paq = _paq || [];
-		  _paq.push(["trackPageView"]);
-		  _paq.push(["enableLinkTracking"]);
-
-		  (function() {
-		    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.briese-ssc.com/piwik/";
-		    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-		    _paq.push(["setSiteId", "1"]);
-		    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-		    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-		  })();
-		</script>
-		<!-- End Piwik Code -->		
-		
-		<!-- Ghost Rec -->
-		<script type="text/javascript">
-		(function() {
-			var host = ("https:" == document.location.protocol ? "https://secure.eemt.se" : "http://www.eemt.se");
-			document.write(unescape("%3Cscript src='" + host + "/gt/js/4357.js' type='text/javascript'%3E%3C/script%3E"));
-		})();
-		</script>
 		
 	</body>
 </html>
