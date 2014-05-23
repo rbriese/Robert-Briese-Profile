@@ -294,7 +294,7 @@ assume_secure_protocol = 0
 ; List of proxy headers for client IP addresses
 ;
 ; CloudFlare (CF-Connecting-IP)
-;proxy_client_headers[] = HTTP_CF_CONNECTING_IP
+proxy_client_headers[] = HTTP_CF_CONNECTING_IP
 ;
 ; ISP proxy (Client-IP)
 ;proxy_client_headers[] = HTTP_CLIENT_IP
