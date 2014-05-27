@@ -138,7 +138,7 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                     <br/>
                     ";
             // line 48
-            echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckPhpPdoAndMysqliSite")), "html", null, true);
+            echo nl2br(call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckPhpPdoAndMysqli", "<a style=\"color:red\" href=\"http://php.net/pdo\">", "</a>", "<a style=\"color:red\" href=\"http://php.net/mysqli\">", "</a>")));
             echo "
                 </p>
             </td>
@@ -608,82 +608,30 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
     <tr>
         <td class=\"label\">";
         // line 225
-        echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckMbstring")), "html", null, true);
-        echo "</td>
-        <td>
-            ";
-        // line 227
-        if ($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "hasMbstring")) {
-            // line 228
-            echo "                ";
-            if ($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "multibyte_ok")) {
-                // line 229
-                echo "                    ";
-                echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
-                echo "
-                ";
-            } else {
-                // line 231
-                echo "                    ";
-                echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
-                echo "
-                    <span class=\"warn\">";
-                // line 232
-                echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckMbstring")), "html", null, true);
-                echo "
-                        <br/> ";
-                // line 233
-                echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckMbstringFuncOverloadHelp")), "html", null, true);
-                echo "</span>
-                ";
-            }
-            // line 235
-            echo "            ";
-        } else {
-            // line 236
-            echo "                ";
-            echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
-            echo "
-                <span class=\"warn\">";
-            // line 237
-            echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckMbstringExtensionHelp")), "html", null, true);
-            echo "
-                    &nbsp;";
-            // line 238
-            echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckMbstringExtensionGeoIpHelp")), "html", null, true);
-            echo "</span>
-            ";
-        }
-        // line 240
-        echo "        </td>
-    </tr>
-    <tr>
-        <td class=\"label\">";
-        // line 243
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckOtherExtensions")), "html", null, true);
         echo "</td>
         <td>
             ";
-        // line 245
+        // line 227
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "desired_extensions"));
         foreach ($context['_seq'] as $context["_key"] => $context["desired_extension"]) {
-            // line 246
+            // line 228
             echo "                ";
             if (twig_in_filter((isset($context["desired_extension"]) ? $context["desired_extension"] : $this->getContext($context, "desired_extension")), $this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "missing_desired_extensions"))) {
-                // line 247
+                // line 229
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
                 echo "<span class=\"warn\">";
                 echo twig_escape_filter($this->env, (isset($context["desired_extension"]) ? $context["desired_extension"] : $this->getContext($context, "desired_extension")), "html", null, true);
                 echo "</span>
                     <p>";
-                // line 248
+                // line 230
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array($this->getAttribute((isset($context["helpMessages"]) ? $context["helpMessages"] : $this->getContext($context, "helpMessages")), (isset($context["desired_extension"]) ? $context["desired_extension"] : $this->getContext($context, "desired_extension")), array(), "array"))), "html", null, true);
                 echo "</p>
                 ";
             } else {
-                // line 250
+                // line 232
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
                 echo " ";
@@ -692,44 +640,44 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                     <br/>
                 ";
             }
-            // line 253
+            // line 235
             echo "            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['desired_extension'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 254
+        // line 236
         echo "        </td>
     </tr>
     <tr>
         <td class=\"label\">";
-        // line 257
+        // line 239
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckOtherFunctions")), "html", null, true);
         echo "</td>
         <td>
             ";
-        // line 259
+        // line 241
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "desired_functions"));
         foreach ($context['_seq'] as $context["_key"] => $context["desired_function"]) {
-            // line 260
+            // line 242
             echo "                ";
             if (twig_in_filter((isset($context["desired_function"]) ? $context["desired_function"] : $this->getContext($context, "desired_function")), $this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "missing_desired_functions"))) {
-                // line 261
+                // line 243
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
                 echo "
                     <span class=\"warn\">";
-                // line 262
+                // line 244
                 echo twig_escape_filter($this->env, (isset($context["desired_function"]) ? $context["desired_function"] : $this->getContext($context, "desired_function")), "html", null, true);
                 echo "</span>
                     <p>";
-                // line 263
+                // line 245
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array($this->getAttribute((isset($context["helpMessages"]) ? $context["helpMessages"] : $this->getContext($context, "helpMessages")), (isset($context["desired_function"]) ? $context["desired_function"] : $this->getContext($context, "desired_function")), array(), "array"))), "html", null, true);
                 echo "</p>
                 ";
             } else {
-                // line 265
+                // line 247
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
                 echo " ";
@@ -738,25 +686,25 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                     <br/>
                 ";
             }
-            // line 268
+            // line 250
             echo "            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['desired_function'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 269
+        // line 251
         echo "        </td>
     </tr>
     <tr>
         <td class=\"label\">";
-        // line 272
+        // line 254
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_Filesystem")), "html", null, true);
         echo "</td>
         <td>
             ";
-        // line 274
+        // line 256
         if ((!$this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "is_nfs"))) {
-            // line 275
+            // line 257
             echo "                ";
             echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
             echo " ";
@@ -765,49 +713,49 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                 <br/>
             ";
         } else {
-            // line 278
+            // line 260
             echo "                ";
             echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
             echo "
                 <span class=\"warn\">";
-            // line 279
+            // line 261
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_NfsFilesystemWarning")), "html", null, true);
             echo "</span>
                 ";
-            // line 280
+            // line 262
             if ((!twig_test_empty((isset($context["duringInstall"]) ? $context["duringInstall"] : $this->getContext($context, "duringInstall"))))) {
-                // line 281
+                // line 263
                 echo "                    <p>";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_NfsFilesystemWarningSuffixInstall")), "html", null, true);
                 echo "</p>
                 ";
             } else {
-                // line 283
+                // line 265
                 echo "                    <p>";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_NfsFilesystemWarningSuffixAdmin")), "html", null, true);
                 echo "</p>
                 ";
             }
-            // line 285
+            // line 267
             echo "            ";
         }
-        // line 286
+        // line 268
         echo "        </td>
     </tr>
     ";
-        // line 288
+        // line 270
         if (twig_test_empty((isset($context["duringInstall"]) ? $context["duringInstall"] : $this->getContext($context, "duringInstall")))) {
-            // line 289
+            // line 271
             echo "    <tr>
         <td class=\"label\">";
-            // line 290
+            // line 272
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("UserCountry_Geolocation")), "html", null, true);
             echo "</td>
         <td>
             ";
-            // line 292
+            // line 274
             if ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "extra"), "geolocation_ok")) {
-                // line 293
+                // line 275
                 echo "                ";
                 echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
                 echo " ";
@@ -816,56 +764,59 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                 <br/>
             ";
             } elseif ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "extra"), "geolocation_using_non_recommended")) {
-                // line 296
+                // line 278
                 echo "                ";
                 echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
                 echo "
-                <span class=\"warn\">Geolocation works, but you are not using one of the recommended providers.
+                <span class=\"warn\">";
+                // line 279
+                echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("UserCountry_GeoIpLocationProviderNotRecomnended")), "html", null, true);
+                echo "
                     ";
-                // line 298
+                // line 280
                 echo call_user_func_array($this->env->getFilter('translate')->getCallable(), array("UserCountry_GeoIpLocationProviderDesc_ServerBased2", "<a href=\"http://piwik.org/docs/geo-locate/\" target=\"_blank\">", "", "", "</a>"));
                 echo "</span>
                 <br/>
             ";
             } else {
-                // line 301
+                // line 283
                 echo "                ";
                 echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
                 echo "
                 <span class=\"warn\">";
-                // line 302
+                // line 284
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("UserCountry_DefaultLocationProviderDesc1")), "html", null, true);
                 echo "
                     ";
-                // line 303
+                // line 285
                 echo call_user_func_array($this->env->getFilter('translate')->getCallable(), array("UserCountry_DefaultLocationProviderDesc2", "<a href=\"http://piwik.org/docs/geo-locate/\" target=\"_blank\">", "", "", "</a>"));
                 echo " </span>
                 </span>
             ";
             }
-            // line 306
+            // line 288
             echo "        </td>
     </tr>
     ";
         }
-        // line 309
+        // line 291
         echo "    ";
         if ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : null), "general_infos", array(), "any", false, true), "assume_secure_protocol", array(), "any", true, true)) {
-            // line 310
+            // line 292
             echo "        <tr>
             <td class=\"label\">";
-            // line 311
+            // line 293
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckSecureProtocol")), "html", null, true);
             echo "</td>
             <td>
                 ";
-            // line 313
+            // line 295
             echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
             echo " <span class=\"warn\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "protocol"), "html", null, true);
             echo " </span><br/>
                 ";
-            // line 314
+            // line 296
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SystemCheckSecureProtocolHelp")), "html", null, true);
             echo "
                 <br/><br/>
@@ -875,27 +826,27 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
         </tr>
     ";
         }
-        // line 321
+        // line 303
         echo "    ";
         if ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : null), "extra", array(), "any", false, true), "load_data_infile_available", array(), "any", true, true)) {
-            // line 322
+            // line 304
             echo "        <tr>
             <td class=\"label\">";
-            // line 323
+            // line 305
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_DatabaseAbilities")), "html", null, true);
             echo "</td>
             <td>
                 ";
-            // line 325
+            // line 307
             if ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "extra"), "load_data_infile_available")) {
-                // line 326
+                // line 308
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["ok"]) ? $context["ok"] : $this->getContext($context, "ok")), "html", null, true);
                 echo " LOAD DATA INFILE
                     <br/>
                 ";
             } else {
-                // line 329
+                // line 311
                 echo "                    ";
                 echo twig_escape_filter($this->env, (isset($context["warning"]) ? $context["warning"] : $this->getContext($context, "warning")), "html", null, true);
                 echo "
@@ -903,41 +854,41 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
                     <br/>
                     <br/>
                     <p>";
-                // line 333
+                // line 315
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_LoadDataInfileUnavailableHelp", "LOAD DATA INFILE", "FILE")), "html", null, true);
                 echo "</p>
                     <p>";
-                // line 334
+                // line 316
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_LoadDataInfileRecommended")), "html", null, true);
                 echo "</p>
                     ";
-                // line 335
+                // line 317
                 if ($this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : null), "extra", array(), "any", false, true), "load_data_infile_error", array(), "any", true, true)) {
-                    // line 336
+                    // line 318
                     echo "                        <em><strong>";
                     echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("General_Error")), "html", null, true);
                     echo ":</strong></em>
                         ";
-                    // line 337
+                    // line 319
                     echo $this->getAttribute($this->getAttribute((isset($context["infos"]) ? $context["infos"] : $this->getContext($context, "infos")), "extra"), "load_data_infile_error");
                     echo "
                     ";
                 }
-                // line 339
+                // line 321
                 echo "                    <p>Troubleshooting: <a target='_blank' href=\"?module=Proxy&action=redirect&url=http://piwik.org/faq/troubleshooting/%23faq_194\">FAQ on piwik.org</a></p>
                 ";
             }
-            // line 341
+            // line 323
             echo "            </td>
         </tr>
     ";
         }
-        // line 344
+        // line 326
         echo "
 </table>
 
 ";
-        // line 347
+        // line 329
         $this->env->loadTemplate("@Installation/_integrityDetails.twig")->display($context);
     }
 
@@ -953,6 +904,6 @@ class __TwigTemplate_ff9798634e3ed9524895ff33ec51ca65d15c8196bb70921148e658f8968
 
     public function getDebugInfo()
     {
-        return array (  941 => 347,  936 => 344,  931 => 341,  927 => 339,  922 => 337,  917 => 336,  915 => 335,  911 => 334,  907 => 333,  899 => 329,  892 => 326,  890 => 325,  885 => 323,  882 => 322,  879 => 321,  869 => 314,  863 => 313,  858 => 311,  855 => 310,  852 => 309,  847 => 306,  841 => 303,  837 => 302,  832 => 301,  826 => 298,  820 => 296,  811 => 293,  809 => 292,  804 => 290,  801 => 289,  799 => 288,  795 => 286,  792 => 285,  786 => 283,  780 => 281,  778 => 280,  774 => 279,  769 => 278,  760 => 275,  758 => 274,  753 => 272,  748 => 269,  742 => 268,  733 => 265,  728 => 263,  724 => 262,  719 => 261,  716 => 260,  712 => 259,  707 => 257,  702 => 254,  696 => 253,  687 => 250,  682 => 248,  675 => 247,  672 => 246,  668 => 245,  663 => 243,  658 => 240,  653 => 238,  649 => 237,  644 => 236,  641 => 235,  636 => 233,  632 => 232,  627 => 231,  621 => 229,  618 => 228,  616 => 227,  611 => 225,  606 => 222,  601 => 220,  593 => 218,  587 => 216,  585 => 215,  580 => 213,  575 => 210,  568 => 208,  565 => 207,  562 => 206,  557 => 204,  552 => 203,  544 => 201,  542 => 200,  537 => 198,  532 => 195,  524 => 190,  519 => 189,  513 => 187,  511 => 186,  506 => 184,  501 => 181,  496 => 179,  492 => 178,  487 => 176,  482 => 175,  474 => 173,  472 => 172,  467 => 170,  462 => 167,  457 => 165,  452 => 163,  448 => 162,  443 => 161,  437 => 159,  435 => 158,  430 => 156,  425 => 153,  422 => 152,  416 => 150,  413 => 149,  408 => 147,  403 => 146,  398 => 144,  393 => 143,  390 => 142,  384 => 140,  382 => 139,  377 => 137,  371 => 134,  366 => 131,  361 => 128,  354 => 126,  348 => 123,  345 => 122,  343 => 121,  340 => 120,  336 => 119,  332 => 118,  328 => 116,  326 => 115,  322 => 113,  312 => 110,  306 => 108,  300 => 106,  297 => 105,  293 => 104,  287 => 101,  281 => 97,  276 => 96,  270 => 95,  261 => 92,  255 => 89,  252 => 88,  250 => 87,  246 => 86,  241 => 85,  238 => 84,  234 => 83,  229 => 81,  226 => 80,  221 => 77,  212 => 74,  209 => 73,  205 => 72,  201 => 70,  199 => 69,  195 => 67,  190 => 66,  180 => 63,  174 => 61,  171 => 60,  169 => 59,  164 => 58,  161 => 57,  157 => 56,  152 => 54,  149 => 53,  141 => 48,  134 => 45,  128 => 43,  122 => 41,  120 => 40,  115 => 38,  111 => 36,  108 => 35,  99 => 32,  93 => 31,  90 => 30,  86 => 29,  82 => 27,  78 => 25,  75 => 23,  73 => 22,  68 => 20,  63 => 17,  47 => 13,  45 => 12,  38 => 9,  32 => 8,  27 => 5,  25 => 4,  23 => 3,  21 => 2,  19 => 1,  65 => 19,  60 => 17,  55 => 14,  53 => 15,  50 => 12,  48 => 11,  43 => 9,  40 => 8,  36 => 6,  33 => 5,  31 => 4,  28 => 3,);
+        return array (  892 => 329,  887 => 326,  882 => 323,  878 => 321,  873 => 319,  868 => 318,  866 => 317,  862 => 316,  858 => 315,  850 => 311,  843 => 308,  841 => 307,  836 => 305,  833 => 304,  830 => 303,  820 => 296,  814 => 295,  809 => 293,  806 => 292,  803 => 291,  798 => 288,  792 => 285,  788 => 284,  783 => 283,  777 => 280,  773 => 279,  768 => 278,  759 => 275,  757 => 274,  752 => 272,  749 => 271,  747 => 270,  743 => 268,  740 => 267,  734 => 265,  728 => 263,  726 => 262,  722 => 261,  717 => 260,  708 => 257,  706 => 256,  701 => 254,  696 => 251,  690 => 250,  681 => 247,  676 => 245,  672 => 244,  667 => 243,  664 => 242,  660 => 241,  655 => 239,  650 => 236,  644 => 235,  635 => 232,  630 => 230,  623 => 229,  620 => 228,  616 => 227,  611 => 225,  606 => 222,  601 => 220,  593 => 218,  587 => 216,  585 => 215,  580 => 213,  575 => 210,  568 => 208,  565 => 207,  562 => 206,  557 => 204,  552 => 203,  544 => 201,  542 => 200,  537 => 198,  532 => 195,  524 => 190,  519 => 189,  513 => 187,  511 => 186,  506 => 184,  501 => 181,  496 => 179,  492 => 178,  487 => 176,  482 => 175,  474 => 173,  472 => 172,  467 => 170,  462 => 167,  457 => 165,  452 => 163,  448 => 162,  443 => 161,  437 => 159,  435 => 158,  430 => 156,  425 => 153,  422 => 152,  416 => 150,  413 => 149,  408 => 147,  403 => 146,  398 => 144,  393 => 143,  390 => 142,  384 => 140,  382 => 139,  377 => 137,  371 => 134,  366 => 131,  361 => 128,  354 => 126,  348 => 123,  345 => 122,  343 => 121,  340 => 120,  336 => 119,  332 => 118,  328 => 116,  326 => 115,  322 => 113,  312 => 110,  306 => 108,  300 => 106,  297 => 105,  293 => 104,  287 => 101,  281 => 97,  276 => 96,  270 => 95,  261 => 92,  255 => 89,  252 => 88,  250 => 87,  246 => 86,  241 => 85,  238 => 84,  234 => 83,  229 => 81,  226 => 80,  221 => 77,  212 => 74,  209 => 73,  205 => 72,  201 => 70,  199 => 69,  195 => 67,  190 => 66,  180 => 63,  174 => 61,  171 => 60,  169 => 59,  164 => 58,  161 => 57,  157 => 56,  152 => 54,  149 => 53,  141 => 48,  134 => 45,  128 => 43,  122 => 41,  120 => 40,  115 => 38,  111 => 36,  108 => 35,  99 => 32,  93 => 31,  90 => 30,  86 => 29,  82 => 27,  78 => 25,  75 => 23,  73 => 22,  68 => 20,  63 => 17,  47 => 13,  45 => 12,  38 => 9,  32 => 8,  27 => 5,  25 => 4,  23 => 3,  21 => 2,  19 => 1,  65 => 19,  60 => 17,  55 => 14,  53 => 15,  50 => 12,  48 => 11,  43 => 9,  40 => 8,  36 => 6,  33 => 5,  31 => 4,  28 => 3,);
     }
 }

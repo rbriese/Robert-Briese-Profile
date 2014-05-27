@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik;
 
@@ -15,12 +13,12 @@ use Exception;
 /**
  * Contains helper methods that can be used to get common Piwik settings.
  * 
- * @package Piwik
  */
 class SettingsPiwik
 {
+    const OPTION_PIWIK_URL = 'piwikUrl';
     /**
-     * Get salt from [superuser] section
+     * Get salt from [General] section
      *
      * @return string
      */
@@ -28,7 +26,7 @@ class SettingsPiwik
     {
         static $salt = null;
         if (is_null($salt)) {
-            $salt = @Config::getInstance()->superuser['salt'];
+            $salt = @Config::getInstance()->General['salt'];
         }
         return $salt;
     }
@@ -150,14 +148,6 @@ class SettingsPiwik
     }
 
     /**
-     * Cache for result of getPiwikUrl.
-     * Can be overwritten for testing purposes only.
-     *
-     * @var string
-     */
-    static public $piwikUrlCache = null;
-
-    /**
      * Returns the URL to this Piwik instance, eg. **http://demo.piwik.org/** or **http://example.org/piwik/**.
      *
      * @return string
@@ -165,17 +155,14 @@ class SettingsPiwik
      */
     public static function getPiwikUrl()
     {
-        // Only set in tests
-        if (self::$piwikUrlCache !== null) {
-            return self::$piwikUrlCache;
-        }
+        $url = Option::get(self::OPTION_PIWIK_URL);
 
-        $key = 'piwikUrl';
-        $url = Option::get($key);
+        $isPiwikCoreDispatching = defined('PIWIK_ENABLE_DISPATCH') && PIWIK_ENABLE_DISPATCH;
         if (Common::isPhpCliMode()
             // in case archive.php is triggered with domain localhost
             || SettingsServer::isArchivePhpTriggered()
-            || defined('PIWIK_MODE_ARCHIVE')
+            // When someone else than core is dispatching this request then we return the URL as it is read only
+            || !$isPiwikCoreDispatching
         ) {
             return $url;
         }
@@ -187,11 +174,28 @@ class SettingsPiwik
             || $currentUrl != $url
         ) {
             if (strlen($currentUrl) >= strlen('http://a/')) {
-                Option::set($key, $currentUrl, $autoLoad = true);
+                self::overwritePiwikUrl($currentUrl);
             }
             $url = $currentUrl;
         }
+
+        if(ProxyHttp::isHttps()) {
+            $url = str_replace("http://", "https://", $url);
+        }
         return $url;
+    }
+
+    /**
+     * Return true if Piwik is installed (installation is done).
+     * @return bool
+     */
+    public static function isPiwikInstalled()
+    {
+        $config = Config::getInstance()->getLocalConfigPath();
+        $exists = file_exists($config);
+
+        // Piwik is installed if the config file is found
+        return $exists;
     }
 
     /**
@@ -264,7 +268,7 @@ class SettingsPiwik
      * @param $piwikServerUrl
      * @return bool
      */
-    static public function checkPiwikServerWorking($piwikServerUrl)
+    static public function checkPiwikServerWorking($piwikServerUrl, $acceptInvalidSSLCertificates = false)
     {
         // Now testing if the webserver is running
         try {
@@ -276,11 +280,8 @@ class SettingsPiwik
                                                 $file = null,
                                                 $followDepth = 0,
                                                 $acceptLanguage = false,
-
-                                                // Accept self signed certificates for developers
-                                                $acceptInvalidSslCertificate = true
-        );
-
+                                                $acceptInvalidSSLCertificates
+            );
         } catch (Exception $e) {
             $fetched = "ERROR fetching: " . $e->getMessage();
         }
@@ -353,4 +354,19 @@ class SettingsPiwik
         return $configByHost;
     }
 
+    /**
+     * @param $currentUrl
+     */
+    public static function overwritePiwikUrl($currentUrl)
+    {
+        Option::set(self::OPTION_PIWIK_URL, $currentUrl, $autoLoad = true);
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isHttpsForced()
+    {
+        return Config::getInstance()->General['force_ssl'] == 1;
+    }
 }

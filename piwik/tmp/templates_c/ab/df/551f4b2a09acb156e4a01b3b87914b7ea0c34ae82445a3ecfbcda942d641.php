@@ -64,13 +64,6 @@ class __TwigTemplate_abdf551f4b2a09acb156e4a01b3b87914b7ea0c34ae82445a3ecfbcda94
         echo "            <input type=\"submit\" value=\"go\"/>
         </form>
 \t</span>
-\t
-\t<script type=\"text/javascript\">
-        piwik.languageName = \"";
-        // line 19
-        echo twig_escape_filter($this->env, (isset($context["currentLanguageName"]) ? $context["currentLanguageName"] : $this->getContext($context, "currentLanguageName")), "html", null, true);
-        echo "\";
-    </script>
 </span>
 ";
     }
@@ -87,6 +80,6 @@ class __TwigTemplate_abdf551f4b2a09acb156e4a01b3b87914b7ea0c34ae82445a3ecfbcda94
 
     public function getDebugInfo()
     {
-        return array (  71 => 19,  64 => 14,  57 => 13,  54 => 11,  41 => 9,  34 => 8,  30 => 7,  26 => 6,  19 => 1,);
+        return array (  64 => 14,  57 => 13,  54 => 11,  41 => 9,  34 => 8,  30 => 7,  26 => 6,  19 => 1,);
     }
 }

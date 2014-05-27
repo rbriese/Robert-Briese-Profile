@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik\DataTable\Renderer;
 
@@ -16,6 +14,7 @@ use Piwik\Common;
 use Piwik\DataTable\Renderer;
 use Piwik\DataTable;
 use Piwik\Date;
+use Piwik\SettingsPiwik;
 use Piwik\Url;
 
 /**
@@ -23,8 +22,6 @@ use Piwik\Url;
  * The RSS renderer can be used only on Set that are arrays of DataTable.
  * A RSS feed contains one dataTable per element in the Set.
  *
- * @package Piwik
- * @subpackage DataTable
  */
 class Rss extends Renderer
 {
@@ -70,7 +67,7 @@ class Rss extends Renderer
         $idSite = Common::getRequestVar('idSite', 1, 'int');
         $period = Common::getRequestVar('period');
 
-        $piwikUrl = Url::getCurrentUrlWithoutFileName()
+        $piwikUrl = SettingsPiwik::getPiwikUrl()
             . "?module=CoreHome&action=index&idSite=" . $idSite . "&period=" . $period;
         $out = "";
         $moreRecentFirst = array_reverse($table->getDataTables(), true);

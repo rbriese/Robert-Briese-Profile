@@ -64,9 +64,9 @@ class __TwigTemplate_3e1cb35b7d3ede6eeb58e0aaa8b3f925196f36896131e76cf62815ec3dc
             <img src=\"plugins/Zeitgeist/images/";
             // line 11
             if (($this->getAttribute((isset($context["counts"]) ? $context["counts"] : $this->getContext($context, "counts")), "starred") > 0)) {
-                echo "yellow_marker.png";
+                echo "annotations_starred.png";
             } else {
-                echo "grey_marker.png";
+                echo "annotations.png";
             }
             echo "\" width=\"16\" height=\"16\"/>
         </span>

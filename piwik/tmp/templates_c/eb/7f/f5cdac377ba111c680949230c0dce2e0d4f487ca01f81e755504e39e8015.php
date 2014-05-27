@@ -21,57 +21,59 @@ class __TwigTemplate_eb7ff5cdac377ba111c680949230c0dce2e0d4f487ca01f81e755504e39
         // line 1
         echo "<!DOCTYPE html>
 <!--[if lt IE 9 ]>
-<html class=\"old-ie\"> <![endif]-->
+<html class=\"old-ie\" id=\"ng-app\" ng-app=\"piwikApp\"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html><!--<![endif]-->
+<html id=\"ng-app\" ng-app=\"piwikApp\"><!--<![endif]-->
     <head>
         ";
         // line 7
         $this->displayBlock('head', $context, $blocks);
-        // line 24
-        echo "    </head>
-    <body>
-    ";
         // line 26
+        echo "    </head>
+    <body ng-app=\"app\">
+    ";
+        // line 28
         $this->env->loadTemplate("_iframeBuster.twig")->display($context);
-        // line 27
+        // line 29
         echo "    ";
         $this->env->loadTemplate("@CoreHome/_javaScriptDisabled.twig")->display($context);
-        // line 28
+        // line 30
         echo "
     <div id=\"root\">
         ";
-        // line 30
+        // line 32
         $this->env->loadTemplate("@CoreHome/_warningInvalidHost.twig")->display($context);
-        // line 31
+        // line 33
         echo "        ";
         $this->env->loadTemplate("@CoreHome/_topScreen.twig")->display($context);
-        // line 32
+        // line 34
         echo "
         ";
-        // line 33
+        // line 35
         $this->displayBlock('notification', $context, $blocks);
-        // line 36
+        // line 38
         echo "
         <div class=\"ui-confirm\" id=\"alert\">
             <h2></h2>
             <input role=\"yes\" type=\"button\" value=\"";
-        // line 39
+        // line 41
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("General_Ok")), "html", null, true);
         echo "\"/>
         </div>
 
-        ";
-        // line 42
-        $this->displayBlock('content', $context, $blocks);
-        // line 44
-        echo "    </div>
-
     ";
-        // line 46
-        $this->env->loadTemplate("_piwikTag.twig")->display($context);
+        // line 44
+        echo call_user_func_array($this->env->getFunction('postEvent')->getCallable(), array("Template.beforeContent", "dashboard", (isset($context["currentModule"]) ? $context["currentModule"] : $this->getContext($context, "currentModule"))));
+        echo "
+        ";
+        // line 45
+        $this->displayBlock('content', $context, $blocks);
         // line 47
-        echo "    
+        echo "    </div>
+    ";
+        // line 48
+        echo call_user_func_array($this->env->getFunction('postEvent')->getCallable(), array("Template.footer"));
+        echo "
     </body>
 </html>
 ";
@@ -80,8 +82,8 @@ class __TwigTemplate_eb7ff5cdac377ba111c680949230c0dce2e0d4f487ca01f81e755504e39
     // line 7
     public function block_head($context, array $blocks = array())
     {
-        // line 8
-        echo "            <meta charset=\"utf-8\">
+        echo "            
+            <meta charset=\"utf-8\">
             <title>";
         // line 9
         echo (isset($context["siteName"]) ? $context["siteName"] : $this->getContext($context, "siteName"));
@@ -99,38 +101,41 @@ class __TwigTemplate_eb7ff5cdac377ba111c680949230c0dce2e0d4f487ca01f81e755504e39
         // line 13
         echo twig_escape_filter($this->env, (isset($context["siteName"]) ? $context["siteName"] : $this->getContext($context, "siteName")), "html_attr");
         echo "' - Piwik\"/>
+            <meta name=\"apple-itunes-app\" content=\"app-id=737216887\" />
             <link rel=\"shortcut icon\" href=\"plugins/CoreHome/images/favicon.ico\"/>
-            ";
-        // line 15
-        $this->env->loadTemplate("_jsGlobalVariables.twig")->display($context);
+";
         // line 16
+        $this->env->loadTemplate("_jsGlobalVariables.twig")->display($context);
+        // line 17
+        $this->env->loadTemplate("_piwikTag.twig")->display($context);
+        // line 18
         echo "            <!--[if lt IE 9]>
             <script language=\"javascript\" type=\"text/javascript\" src=\"libs/jqplot/excanvas.min.js\"></script>
             <![endif]-->
-            ";
-        // line 19
+";
+        // line 21
         $this->env->loadTemplate("_jsCssIncludes.twig")->display($context);
-        // line 20
+        // line 22
         echo "            <!--[if IE]>
             <link rel=\"stylesheet\" type=\"text/css\" href=\"plugins/Zeitgeist/stylesheets/ieonly.css\"/>
             <![endif]-->
         ";
     }
 
-    // line 33
+    // line 35
     public function block_notification($context, array $blocks = array())
     {
-        // line 34
+        // line 36
         echo "            ";
         $this->env->loadTemplate("@CoreHome/_notifications.twig")->display($context);
-        // line 35
+        // line 37
         echo "        ";
     }
 
-    // line 42
+    // line 45
     public function block_content($context, array $blocks = array())
     {
-        // line 43
+        // line 46
         echo "        ";
     }
 
@@ -146,6 +151,6 @@ class __TwigTemplate_eb7ff5cdac377ba111c680949230c0dce2e0d4f487ca01f81e755504e39
 
     public function getDebugInfo()
     {
-        return array (  134 => 43,  131 => 42,  127 => 35,  124 => 34,  121 => 33,  114 => 20,  112 => 19,  107 => 16,  105 => 15,  100 => 13,  87 => 9,  84 => 8,  81 => 7,  74 => 47,  72 => 46,  68 => 44,  66 => 42,  60 => 39,  55 => 36,  53 => 33,  50 => 32,  41 => 28,  38 => 27,  36 => 26,  32 => 24,  30 => 7,  22 => 1,  56 => 12,  54 => 11,  51 => 10,  47 => 31,  45 => 30,  42 => 6,  40 => 5,  37 => 4,  34 => 3,  29 => 2,);
+        return array (  139 => 46,  136 => 45,  132 => 37,  129 => 36,  126 => 35,  119 => 22,  117 => 21,  112 => 18,  110 => 17,  108 => 16,  102 => 13,  89 => 9,  83 => 7,  75 => 48,  72 => 47,  70 => 45,  66 => 44,  60 => 41,  55 => 38,  53 => 35,  50 => 34,  41 => 30,  38 => 29,  36 => 28,  32 => 26,  30 => 7,  22 => 1,  56 => 12,  54 => 11,  51 => 10,  47 => 33,  45 => 32,  42 => 6,  40 => 5,  37 => 4,  34 => 3,  29 => 2,);
     }
 }

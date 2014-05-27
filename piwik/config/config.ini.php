@@ -8,16 +8,11 @@ dbname = "piwik"
 tables_prefix = "piwik_"
 adapter = "PDO\MYSQL"
 
-[superuser]
-login = "piwikadmin"
-password = "ae714f3ce947a641f7958991f92393b8"
-email = "mail@briese-ssc.com"
-salt = "8b11446180fd42d9f0cd2b843c29a149"
-
 [General]
-trusted_hosts[] = "www.briese-home.com"
-trusted_hosts[] = "192.168.0.43"
-trusted_hosts[] = "192.168.0.30"
+proxy_client_headers[] = "HTTP_CF_CONNECTING_IP"
+proxy_client_headers[] = "HTTP_X_FORWARDED_FOR"
+salt = "8bf35e47b10bc33451942cd7ea2a6caa"
+trusted_hosts[] = "www.briese-ssc.com"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Login"
@@ -63,6 +58,7 @@ PluginsInstalled[] = "Annotations"
 PluginsInstalled[] = "MobileMessaging"
 PluginsInstalled[] = "Overlay"
 PluginsInstalled[] = "SegmentEditor"
+PluginsInstalled[] = "Insights"
 PluginsInstalled[] = "Morpheus"
 PluginsInstalled[] = "Zeitgeist"
 
@@ -71,6 +67,7 @@ Plugins_Tracker[] = "Provider"
 Plugins_Tracker[] = "Goals"
 Plugins_Tracker[] = "PrivacyManager"
 Plugins_Tracker[] = "UserCountry"
+Plugins_Tracker[] = "Login"
 Plugins_Tracker[] = "UsersManager"
 Plugins_Tracker[] = "SitesManager"
 

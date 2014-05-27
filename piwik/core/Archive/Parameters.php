@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 
 namespace Piwik\Archive;
@@ -38,16 +36,22 @@ class Parameters
      */
     private $segment;
 
+    /**
+     * @var bool
+     */
+    private $skipAggregationOfSubTables;
+
     public function getSegment()
     {
         return $this->segment;
     }
 
-    public function __construct($idSites, $periods, Segment $segment)
+    public function __construct($idSites, $periods, Segment $segment, $skipAggregationOfSubTables)
     {
         $this->idSites = $idSites;
         $this->periods = $periods;
         $this->segment = $segment;
+        $this->skipAggregationOfSubTables = $skipAggregationOfSubTables;
     }
 
     public function getPeriods()
@@ -58,6 +62,11 @@ class Parameters
     public function getIdSites()
     {
         return $this->idSites;
+    }
+
+    public function isSkipAggregationOfSubTables()
+    {
+        return $this->skipAggregationOfSubTables;
     }
 
 }

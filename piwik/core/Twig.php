@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik;
 
 use Exception;
+use Piwik\Period\Range;
 use Piwik\Translate;
 use Piwik\Visualization\Sparkline;
+use Piwik\View\RenderTokenParser;
 use Twig_Environment;
 use Twig_Extension_Debug;
 use Twig_Loader_Chain;
@@ -23,8 +23,6 @@ use Twig_SimpleFunction;
 /**
  * Twig class
  *
- * @package Piwik
- * @subpackage Twig
  */
 class Twig
 {
@@ -66,6 +64,7 @@ class Twig
         $this->addFilter_truncate();
         $this->addFilter_notificiation();
         $this->addFilter_percentage();
+        $this->addFilter_prettyDate();
         $this->twig->addFilter(new Twig_SimpleFilter('implode', 'implode'));
         $this->twig->addFilter(new Twig_SimpleFilter('ucwords', 'ucwords'));
 
@@ -75,6 +74,8 @@ class Twig
         $this->addFunction_postEvent();
         $this->addFunction_isPluginLoaded();
         $this->addFunction_getJavascriptTranslations();
+
+        $this->twig->addTokenParser(new RenderTokenParser());
     }
 
     protected function addFunction_getJavascriptTranslations()
@@ -117,8 +118,17 @@ class Twig
     protected function addFunction_postEvent()
     {
         $postEventFunction = new Twig_SimpleFunction('postEvent', function ($eventName) {
+            // get parameters to twig function
+            $params = func_get_args();
+            // remove the first value (event name)
+            array_shift($params);
+
+            // make the first value the string that will get output in the template
+            // plugins can modify this string
             $str = '';
-            Piwik::postEvent($eventName, array(&$str));
+            $params = array_merge( array( &$str ), $params);
+
+            Piwik::postEvent($eventName, $params);
             return $str;
         }, array('is_safe' => array('html')));
         $this->twig->addFunction($postEventFunction);
@@ -186,6 +196,14 @@ class Twig
 
         }, array('is_safe' => array('html')));
         $this->twig->addFilter($notificationFunction);
+    }
+
+    protected function addFilter_prettyDate()
+    {
+        $prettyDate = new Twig_SimpleFilter('prettyDate', function ($dateString, $period) {
+            return Range::factory($period, $dateString)->getLocalizedShortString();
+        });
+        $this->twig->addFilter($prettyDate);
     }
 
     protected function addFilter_percentage()
@@ -262,7 +280,7 @@ class Twig
 
     private function addPluginNamespaces(Twig_Loader_Filesystem $loader)
     {
-        $plugins = \Piwik\Plugin\Manager::getInstance()->getLoadedPluginsName();
+        $plugins = \Piwik\Plugin\Manager::getInstance()->getAllPluginsNames();
         foreach ($plugins as $name) {
             $path = sprintf("%s/plugins/%s/templates/", PIWIK_INCLUDE_PATH, $name);
             if (is_dir($path)) {

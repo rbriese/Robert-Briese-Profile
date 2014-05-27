@@ -385,7 +385,9 @@ function checkSqlQuery(theForm)
 {
     // get the textarea element containing the query
     if (codemirror_editor) {
+        codemirror_editor.save();
         var sqlQuery = codemirror_editor.display.input;
+        sqlQuery.value = codemirror_editor.getValue();
     } else {
         var sqlQuery = theForm.elements['sql_query'];
     }
@@ -870,7 +872,7 @@ function addDateTimePicker() {
             var timeFormat = 'HH:mm:ss';
             // check for decimal places of seconds
             if (($(this).parent().data('decimals') > 0) && ($(this).parent().data('type').indexOf('time') != -1)){
-                showMillisec = true;                       
+                showMillisec = true;
                 timeFormat = 'HH:mm:ss.lc';
                 if ($(this).parent().data('decimals') > 3) {
                     showMicrosec = true;
@@ -879,8 +881,8 @@ function addDateTimePicker() {
             PMA_addDatepicker($(this), {
                 showMillisec: showMillisec,
                 showMicrosec: showMicrosec,
-                timeFormat: timeFormat,                        
-            });               
+                timeFormat: timeFormat
+            });
          })
     }
 }
@@ -1398,6 +1400,7 @@ AJAX.registerOnload('functions.js', function () {
         //hide already existing success message
         var sql_query;
         if (codemirror_inline_editor) {
+            codemirror_inline_editor.save();
             sql_query = codemirror_inline_editor.getValue();
         } else {
             sql_query = $(this).prev().val();
@@ -3840,17 +3843,19 @@ AJAX.registerOnload('functions.js', function () {
      * Attach Ajax event handlers for input fields in the editor
      * and used to submit the Ajax request when the ENTER key is pressed.
      */
-    $('#createViewDialog').find('input, select').live('keydown', function (e) {
-        if (e.which === 13) { // 13 is the ENTER key
-            e.preventDefault();
+    if ($('#createViewDialog').length !== 0) {
+        $('#createViewDialog').find('input, select').live('keydown', function (e) {
+            if (e.which === 13) { // 13 is the ENTER key
+                e.preventDefault();
 
-            // with preventing default, selection by <select> tag
-            // was also prevented in IE
-            $(this).blur();
+                // with preventing default, selection by <select> tag
+                // was also prevented in IE
+                $(this).blur();
 
-            $(this).closest('.ui-dialog').find('.ui-button:first').click();
-        }
-    }); // end $.live()
+                $(this).closest('.ui-dialog').find('.ui-button:first').click();
+            }
+        }); // end $.live()
+    }
 
     var $elm = $('textarea[name="view[as]"]');
     if ($elm.length > 0) {

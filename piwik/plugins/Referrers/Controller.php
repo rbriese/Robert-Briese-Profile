@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik_Plugins
- * @package Referrers
  */
 namespace Piwik\Plugins\Referrers;
 
@@ -16,13 +14,13 @@ use Piwik\DataTable\Map;
 use Piwik\Metrics;
 use Piwik\Period\Range;
 use Piwik\Piwik;
+use Piwik\SettingsPiwik;
 use Piwik\Url;
 use Piwik\View;
 use Piwik\ViewDataTable\Factory;
 
 /**
  *
- * @package Referrers
  */
 class Controller extends \Piwik\Plugin\Controller
 {
@@ -30,7 +28,7 @@ class Controller extends \Piwik\Plugin\Controller
     {
         $view = new View('@Referrers/index');
 
-        $view->graphEvolutionReferrers = $this->getEvolutionGraph(true, Common::REFERRER_TYPE_DIRECT_ENTRY, array('nb_visits'));
+        $view->graphEvolutionReferrers = $this->getEvolutionGraph(Common::REFERRER_TYPE_DIRECT_ENTRY, array('nb_visits'));
         $view->nameGraphEvolutionReferrers = 'Referrers.getEvolutionGraph';
 
         // building the referrers summary report
@@ -256,7 +254,7 @@ class Controller extends \Piwik\Plugin\Controller
         Common::REFERRER_TYPE_CAMPAIGN      => 'Referrers_Campaigns',
     );
 
-    public function getEvolutionGraph($fetch = false, $typeReferrer = false, array $columns = array())
+    public function getEvolutionGraph($typeReferrer = false, array $columns = array())
     {
         $view = $this->getLastUnitGraph($this->pluginName, __FUNCTION__, 'Referrers.getReferrerType');
 
@@ -370,7 +368,7 @@ class Controller extends \Piwik\Plugin\Controller
         $url = $topPageUrl;
 
         // HTML
-        $api = Url::getCurrentUrlWithoutFileName()
+        $api = SettingsPiwik::getPiwikUrl()
             . '?module=API&method=Referrers.getKeywordsForPageUrl'
             . '&format=php'
             . '&filter_limit=10'
@@ -398,7 +396,7 @@ function DisplayTopKeywords($url = "")
 	$url = htmlspecialchars($url, ENT_QUOTES);
 	$output = "<h2>Top Keywords for <a href=\'$url\'>$url</a></h2><ul>";
 	foreach($keywords as $keyword) {
-		$output .= "<li>". $keyword[0]. "</li>";
+		$output .= "<li>". $keyword . "</li>";
 	}
 	if(empty($keywords)) { $output .= "Nothing yet..."; }
 	$output .= "</ul>";
@@ -435,7 +433,7 @@ function DisplayTopKeywords($url = "")
             $url = htmlspecialchars($url, ENT_QUOTES);
             $output = "<h2>Top Keywords for <a href=\'$url\'>$url</a></h2><ul>";
             foreach ($keywords as $keyword) {
-                $output .= "<li>" . $keyword[0] . "</li>";
+                $output .= "<li>" . $keyword . "</li>";
             }
             if (empty($keywords)) {
                 $output .= "Nothing yet...";

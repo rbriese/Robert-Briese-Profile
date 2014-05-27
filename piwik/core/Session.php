@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik;
 
@@ -16,9 +14,6 @@ use Zend_Session;
 
 /**
  * Session initialization.
- *
- * @package Piwik
- * @subpackage Session
  */
 class Session extends Zend_Session
 {
@@ -44,7 +39,7 @@ class Session extends Zend_Session
      */
     public static function start($options = false)
     {
-        if (Common::isPhpCliMode()
+        if (headers_sent()
             || self::$sessionStarted
             || (defined('PIWIK_ENABLE_SESSION_START') && !PIWIK_ENABLE_SESSION_START)
         ) {
@@ -94,15 +89,12 @@ class Session extends Zend_Session
             // - user  - we can't verify that user-defined session handler functions have already been set via session_set_save_handler()
             // - mm    - this handler is not recommended, unsupported, not available for Windows, and has a potential concurrency issue
 
-            $db = Db::get();
-
             $config = array(
                 'name'           => Common::prefixTable('session'),
                 'primary'        => 'id',
                 'modifiedColumn' => 'modified',
                 'dataColumn'     => 'data',
                 'lifetimeColumn' => 'lifetime',
-                'db'             => $db,
             );
 
             $saveHandler = new DbTable($config);

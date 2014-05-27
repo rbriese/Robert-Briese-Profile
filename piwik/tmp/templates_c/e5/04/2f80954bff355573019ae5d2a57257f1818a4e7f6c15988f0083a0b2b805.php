@@ -129,7 +129,7 @@ class __TwigTemplate_e5042f80954bff355573019ae5d2a57257f1818a4e7f6c15988f0083a0b
             }
             // line 29
             echo "                ";
-            if ($this->getAttribute((isset($context["visitor"]) ? $context["visitor"] : null), "visitorId", array(), "any", true, true)) {
+            if ((!twig_test_empty((($this->getAttribute((isset($context["visitor"]) ? $context["visitor"] : null), "visitorId", array(), "any", true, true)) ? (_twig_default_filter($this->getAttribute((isset($context["visitor"]) ? $context["visitor"] : null), "visitorId"), false)) : (false))))) {
                 // line 30
                 echo "                <a class=\"visits-live-launch-visitor-profile rightLink\" title=\"";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Live_ViewVisitorProfile")), "html", null, true);

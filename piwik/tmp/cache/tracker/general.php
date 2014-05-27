@@ -2,10 +2,13 @@
 $content   = array (
   'isBrowserTriggerEnabled' => true,
   'lastTrackerCronRun' => false,
+  'currentLocationProviderId' => 'geoip_php',
+  'PrivacyManager.useAnonymizedIpForVisitEnrichment' => true,
+  'PrivacyManager.ipAddressMaskLength' => 1,
+  'PrivacyManager.doNotTrackEnabled' => true,
   'PrivacyManager.ipAnonymizerEnabled' => false,
-  'PrivacyManager.doNotTrackEnabled' => false,
-  'currentLocationProviderId' => 'default',
+  'CustomVariables.MaxNumCustomVariables' => 5,
 );
-$expires_on   = 1399988894;
+$expires_on   = 1401153759;
 $cache_complete   = true;
 ?>

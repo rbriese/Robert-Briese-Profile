@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik\DataAccess;
 
@@ -502,6 +500,7 @@ class LogAggregator
                 ', ',
                 array(
                     "log_action.name AS label",
+                    sprintf("log_conversion_item.%s AS labelIdAction", $dimension),
                     sprintf(
                         '%s AS `%d`',
                         self::getSqlRevenue('SUM(log_conversion_item.quantity * log_conversion_item.price)'),

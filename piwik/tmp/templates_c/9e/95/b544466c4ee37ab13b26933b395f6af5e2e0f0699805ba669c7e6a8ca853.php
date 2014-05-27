@@ -38,11 +38,41 @@ class __TwigTemplate_9e95b544466c4ee37ab13b26933b395f6af5e2e0f0699805ba669c7e6a8
         echo "
 
 
-<p class=\"nextStep\">
-    <a class=\"submit\" href=\"index.php\">";
+    <br/>
+<h2>";
         // line 10
+        echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_WelcomeToCommunity")), "html", null, true);
+        echo "</h2>
+<p>
+";
+        // line 12
+        echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_CollaborativeProject")), "html", null, true);
+        echo "
+</p><p>
+    ";
+        // line 14
+        echo call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_GetInvolved", "<a  target=\"_blank\" href=\"http://piwik.org/get-involved/\">", "</a>"));
+        echo "
+    ";
+        // line 15
+        echo call_user_func_array($this->env->getFilter('translate')->getCallable(), array("General_HelpTranslatePiwik", "<a target='_blank' href='http://piwik.org/translations/'>", "</a>"));
+        echo "
+</p>
+    <p>";
+        // line 17
+        echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_WeHopeYouWillEnjoyPiwik")), "html", null, true);
+        echo "</p>
+    <p><i>";
+        // line 18
+        echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_HappyAnalysing")), "html", null, true);
+        echo "</i></p>
+
+<p class=\"nextStep\">
+\t<a class=\"submit\" href=\"index.php\">";
+        // line 21
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("General_ContinueToPiwik")), "html", null, true);
         echo " &raquo;</a>
+\t
 </p>
 ";
     }
@@ -59,6 +89,6 @@ class __TwigTemplate_9e95b544466c4ee37ab13b26933b395f6af5e2e0f0699805ba669c7e6a8
 
     public function getDebugInfo()
     {
-        return array (  44 => 10,  37 => 6,  31 => 4,  28 => 3,);
+        return array (  73 => 21,  67 => 18,  63 => 17,  58 => 15,  54 => 14,  49 => 12,  44 => 10,  37 => 6,  31 => 4,  28 => 3,);
     }
 }

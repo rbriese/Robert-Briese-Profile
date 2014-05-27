@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik
  */
 namespace Piwik\ViewDataTable;
 
@@ -18,12 +16,11 @@ use Piwik\Plugins\CoreVisualizations\Visualizations\HtmlTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Bar;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Pie;
 use Piwik\Plugins\Goals\Visualizations\Goals;
+use Piwik\Plugins\Insights\Visualizations\Insight;
 
 /**
  * ViewDataTable Manager.
  *
- * @package Piwik
- * @subpackage ViewDataTable
  */
 class Manager
 {
@@ -198,6 +195,12 @@ class Manager
             $result[] = $normalViewIcons;
         }
 
+        // add insight views
+        $insightsViewIcons = array(
+            'class'   => 'tableInsightViews',
+            'buttons' => array(),
+        );
+
         // add graph views
         $graphViewIcons = array(
             'class'   => 'tableGraphViews tableGraphCollapsed',
@@ -222,11 +225,20 @@ class Manager
 
         foreach ($nonCoreVisualizations as $id => $klass) {
             if ($klass::canDisplayViewDataTable($view)) {
-                $graphViewIcons['buttons'][] = static::getFooterIconFor($id);
+                $footerIcon = static::getFooterIconFor($id);
+                if (Insight::ID == $footerIcon['id']) {
+                    $insightsViewIcons['buttons'][] = static::getFooterIconFor($id);
+                } else {
+                    $graphViewIcons['buttons'][] = static::getFooterIconFor($id);
+                }
             }
         }
 
         $graphViewIcons['buttons'] = array_filter($graphViewIcons['buttons']);
+
+        if (!empty($insightsViewIcons['buttons'])) {
+            $result[] = $insightsViewIcons;
+        }
 
         if (!empty($graphViewIcons['buttons'])) {
             $result[] = $graphViewIcons;

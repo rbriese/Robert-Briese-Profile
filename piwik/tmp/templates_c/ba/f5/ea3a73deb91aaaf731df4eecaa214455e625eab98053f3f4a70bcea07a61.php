@@ -28,14 +28,16 @@ class __TwigTemplate_baf5ea3a73deb91aaaf731df4eecaa214455e625eab98053f3f4a70bcea
     public function block_content($context, array $blocks = array())
     {
         // line 4
-        echo "<h2>";
+        echo "
+<h2>";
+        // line 5
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_Tables")), "html", null, true);
         echo "</h2>
 
 ";
-        // line 6
+        // line 7
         if (array_key_exists("someTablesInstalled", $context)) {
-            // line 7
+            // line 8
             echo "    <div class=\"warning\">";
             echo call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesWithSameNamesFound", "<span id='linkToggle'>", "</span>"));
             echo "
@@ -43,30 +45,30 @@ class __TwigTemplate_baf5ea3a73deb91aaaf731df4eecaa214455e625eab98053f3f4a70bcea
     </div>
     <div id=\"toggle\" style=\"display:none;color:#4F2410;font-size: small;\">
             <em>";
-            // line 11
+            // line 12
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesFound")), "html", null, true);
             echo ": <br/>
                 ";
-            // line 12
+            // line 13
             echo twig_escape_filter($this->env, (isset($context["tablesInstalled"]) ? $context["tablesInstalled"] : $this->getContext($context, "tablesInstalled")), "html", null, true);
             echo " </em>
     </div>
     ";
-            // line 14
+            // line 15
             if (array_key_exists("showReuseExistingTables", $context)) {
-                // line 15
+                // line 16
                 echo "        <p>";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesWarningHelp")), "html", null, true);
                 echo "</p>
         <p class=\"nextStep\"><a href=\"";
-                // line 16
-                echo twig_escape_filter($this->env, call_user_func_array($this->env->getFunction('linkTo')->getCallable(), array(array("action" => (isset($context["nextModuleName"]) ? $context["nextModuleName"] : $this->getContext($context, "nextModuleName"))))), "html", null, true);
+                // line 17
+                echo twig_escape_filter($this->env, call_user_func_array($this->env->getFunction('linkTo')->getCallable(), array(array("action" => "reuseTables"))), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesReuse")), "html", null, true);
                 echo " &raquo;</a></p>
     ";
             } else {
-                // line 18
+                // line 19
                 echo "        <p class=\"nextStep\"><a href=\"";
                 echo twig_escape_filter($this->env, call_user_func_array($this->env->getFunction('linkTo')->getCallable(), array(array("action" => (isset($context["previousPreviousModuleName"]) ? $context["previousPreviousModuleName"] : $this->getContext($context, "previousPreviousModuleName"))))), "html", null, true);
                 echo "\">&laquo; ";
@@ -74,7 +76,7 @@ class __TwigTemplate_baf5ea3a73deb91aaaf731df4eecaa214455e625eab98053f3f4a70bcea
                 echo "</a></p>
     ";
             }
-            // line 20
+            // line 21
             echo "    <p class=\"nextStep\"><a href=\"";
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFunction('linkTo')->getCallable(), array(array("deleteTables" => 1))), "html", null, true);
             echo "\" id=\"eraseAllTables\">";
@@ -82,36 +84,36 @@ class __TwigTemplate_baf5ea3a73deb91aaaf731df4eecaa214455e625eab98053f3f4a70bcea
             echo " &raquo;</a></p>
 ";
         }
-        // line 22
+        // line 23
         echo "
 ";
-        // line 23
+        // line 24
         if (array_key_exists("existingTablesDeleted", $context)) {
-            // line 24
+            // line 25
             echo "    <div class=\"success\"> ";
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesDeletedSuccess")), "html", null, true);
             echo "
         <img src=\"plugins/Zeitgeist/images/success_medium.png\"/></div>
 ";
         }
-        // line 27
+        // line 28
         echo "
 ";
-        // line 28
+        // line 29
         if (array_key_exists("tablesCreated", $context)) {
-            // line 29
+            // line 30
             echo "    <div class=\"success\"> ";
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_TablesCreatedSuccess")), "html", null, true);
             echo "
         <img src=\"plugins/Zeitgeist/images/success_medium.png\"/></div>
 ";
         }
-        // line 32
+        // line 33
         echo "
 <script>
     \$(document).ready(function () {
         var strConfirmEraseTables = \"";
-        // line 35
+        // line 36
         echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_ConfirmDeleteExistingTables", (("[" . (isset($context["tablesInstalled"]) ? $context["tablesInstalled"] : $this->getContext($context, "tablesInstalled"))) . "]"))), "html", null, true);
         echo " \";
 
@@ -153,6 +155,6 @@ class __TwigTemplate_baf5ea3a73deb91aaaf731df4eecaa214455e625eab98053f3f4a70bcea
 
     public function getDebugInfo()
     {
-        return array (  115 => 35,  110 => 32,  103 => 29,  101 => 28,  98 => 27,  91 => 24,  89 => 23,  86 => 22,  78 => 20,  70 => 18,  63 => 16,  58 => 15,  56 => 14,  51 => 12,  47 => 11,  39 => 7,  37 => 6,  31 => 4,  28 => 3,);
+        return array (  117 => 36,  112 => 33,  105 => 30,  103 => 29,  100 => 28,  93 => 25,  91 => 24,  88 => 23,  80 => 21,  72 => 19,  65 => 17,  60 => 16,  58 => 15,  53 => 13,  49 => 12,  41 => 8,  39 => 7,  34 => 5,  31 => 4,  28 => 3,);
     }
 }

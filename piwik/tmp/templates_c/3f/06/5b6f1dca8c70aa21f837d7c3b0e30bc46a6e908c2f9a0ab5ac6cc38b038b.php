@@ -89,7 +89,7 @@ class __TwigTemplate_3f065b6f1dca8c70aa21f837d7c3b0e30bc46a6e908c2f9a0ab5ac6cc38
             } else {
                 // line 20
                 echo "            ";
-                if (((twig_test_empty((isset($context["dataTable"]) ? $context["dataTable"] : $this->getContext($context, "dataTable"))) || ($this->getAttribute((isset($context["dataTable"]) ? $context["dataTable"] : $this->getContext($context, "dataTable")), "getRowsCount", array(), "method") == 0)) || ((array_key_exists("dataTableHasNoData", $context)) ? (_twig_default_filter((isset($context["dataTableHasNoData"]) ? $context["dataTableHasNoData"] : $this->getContext($context, "dataTableHasNoData")), false)) : (false)))) {
+                if ((twig_test_empty((isset($context["dataTable"]) ? $context["dataTable"] : $this->getContext($context, "dataTable"))) || ((array_key_exists("dataTableHasNoData", $context)) ? (_twig_default_filter((isset($context["dataTableHasNoData"]) ? $context["dataTableHasNoData"] : $this->getContext($context, "dataTableHasNoData")), false)) : (false)))) {
                     // line 21
                     echo "                <div class=\"pk-emptyDataTable\">
                 ";

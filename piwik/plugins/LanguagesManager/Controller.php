@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik_Plugins
- * @package LanguagesManager
  *
  */
 namespace Piwik\Plugins\LanguagesManager;
@@ -17,13 +15,12 @@ use Piwik\Piwik;
 use Piwik\Url;
 
 /**
- * @package LanguagesManager
  */
 class Controller extends \Piwik\Plugin\Controller
 {
     /**
      * anonymous = in the session
-     * authenticated user = in the session and in DB
+     * authenticated user = in the session
      */
     public function saveLanguage()
     {
@@ -33,13 +30,8 @@ class Controller extends \Piwik\Plugin\Controller
         if (DbHelper::isInstalled()) {
             $this->checkTokenInUrl();
         }
+
         LanguagesManager::setLanguageForSession($language);
-        if (\Piwik\Registry::isRegistered('access')) {
-            $currentUser = Piwik::getCurrentUserLogin();
-            if ($currentUser && $currentUser !== 'anonymous') {
-                API::getInstance()->setLanguageForUser($currentUser, $language);
-            }
-        }
         Url::redirectToReferrer();
     }
 }

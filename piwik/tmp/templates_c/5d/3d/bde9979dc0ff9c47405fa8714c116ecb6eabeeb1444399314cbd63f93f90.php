@@ -18,7 +18,7 @@ class __TwigTemplate_5d3dbde9979dc0ff9c47405fa8714c116ecb6eabeeb1444399314cbd63f
         // line 1
         if (array_key_exists("onlyShowAddNewGoal", $context)) {
             // line 2
-            echo "    <h2>";
+            echo "    <h2 piwik-enriched-headline>";
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Goals_AddNewGoal")), "html", null, true);
             echo "</h2>
     <p>";
@@ -46,7 +46,7 @@ class __TwigTemplate_5d3dbde9979dc0ff9c47405fa8714c116ecb6eabeeb1444399314cbd63f
         } else {
             // line 10
             echo "    <div class=\"clear\"></div>
-    <h2>";
+    <h2 piwik-enriched-headline>";
             // line 11
             echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Goals_GoalsManagement")), "html", null, true);
             echo "</h2>

@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package Piwik_Menu
  */
 namespace Piwik\Menu;
 
@@ -21,7 +19,6 @@ use Piwik\Singleton;
  * Each menu has a class that manages the menu's content. Each class invokes
  * a different event to allow plugins to add new menu items.
  * 
- * @package Piwik_Menu
  * @static \Piwik\Menu\MenuAbstract getInstance()
  */
 abstract class MenuAbstract extends Singleton
@@ -166,10 +163,17 @@ abstract class MenuAbstract extends Singleton
             $mainMenuToEdit = $edit[0];
             $subMenuToEdit = $edit[1];
             $newUrl = $edit[2];
-            if (!isset($this->menu[$mainMenuToEdit][$subMenuToEdit])) {
+
+            if ($subMenuToEdit === null) {
+                $menuDataToEdit = @$this->menu[$mainMenuToEdit];
+            } else {
+                $menuDataToEdit = @$this->menu[$mainMenuToEdit][$subMenuToEdit];
+            }
+
+            if (empty($menuDataToEdit)) {
                 $this->buildMenuItem($mainMenuToEdit, $subMenuToEdit, $newUrl);
             } else {
-                $this->menu[$mainMenuToEdit][$subMenuToEdit]['_url'] = $newUrl;
+                $menuDataToEdit['_url'] = $newUrl;
             }
         }
     }

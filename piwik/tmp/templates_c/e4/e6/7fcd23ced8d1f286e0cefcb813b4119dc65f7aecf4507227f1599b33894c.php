@@ -34,8 +34,28 @@ class __TwigTemplate_e4e67fcd23ced8d1f286e0cefcb813b4119dc65f7aecf4507227f1599b3
 
 ";
         // line 6
-        if (array_key_exists("form_data", $context)) {
+        if (array_key_exists("errorMessage", $context)) {
             // line 7
+            echo "    <div class=\"error\">
+        <img src=\"plugins/Zeitgeist/images/error_medium.png\"/>
+        ";
+            // line 9
+            echo twig_escape_filter($this->env, call_user_func_array($this->env->getFilter('translate')->getCallable(), array("Installation_SuperUserSetupError")), "html", null, true);
+            echo ":
+        <br/>- ";
+            // line 10
+            echo (isset($context["errorMessage"]) ? $context["errorMessage"] : $this->getContext($context, "errorMessage"));
+            echo "
+
+    </div>
+";
+        }
+        // line 14
+        echo "
+";
+        // line 15
+        if (array_key_exists("form_data", $context)) {
+            // line 16
             echo "    ";
             $this->env->loadTemplate("genericForm.twig")->display($context);
         }
@@ -53,6 +73,6 @@ class __TwigTemplate_e4e67fcd23ced8d1f286e0cefcb813b4119dc65f7aecf4507227f1599b3
 
     public function getDebugInfo()
     {
-        return array (  39 => 7,  37 => 6,  31 => 4,  28 => 3,);
+        return array (  59 => 16,  57 => 15,  54 => 14,  47 => 10,  43 => 9,  39 => 7,  37 => 6,  31 => 4,  28 => 3,);
     }
 }

@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik_Plugins
- * @package SitesManager
  */
 namespace Piwik\Plugins\SitesManager;
 
@@ -17,6 +15,7 @@ use Piwik\DataTable\Renderer\Json;
 use Piwik\Date;
 use Piwik\IP;
 use Piwik\Piwik;
+use Piwik\SettingsPiwik;
 use Piwik\SettingsServer;
 use Piwik\Site;
 use Piwik\Url;
@@ -25,7 +24,6 @@ use Piwik\View;
 
 /**
  *
- * @package SitesManager
  */
 class Controller extends \Piwik\Plugin\ControllerAdmin
 {
@@ -37,7 +35,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         $view = new View('@SitesManager/index');
 
         Site::clearCache();
-        if (Piwik::isUserIsSuperUser()) {
+        if (Piwik::hasUserSuperUserAccess()) {
             $sitesRaw = API::getInstance()->getAllSites();
         } else {
             $sitesRaw = API::getInstance()->getSitesWithAdminAccess();
@@ -129,13 +127,13 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     /**
      * Displays the admin UI page showing all tracking tags
-     * @return void
+     * @return string
      */
     function displayJavascriptCode()
     {
         $idSite = Common::getRequestVar('idSite');
         Piwik::checkUserHasViewAccess($idSite);
-        $jsTag = Piwik::getJavascriptCode($idSite, Url::getCurrentUrlWithoutFileName());
+        $jsTag = Piwik::getJavascriptCode($idSite, SettingsPiwik::getPiwikUrl());
         $view = new View('@SitesManager/displayJavascriptCode');
         $this->setBasicVariablesView($view);
         $view->idSite = $idSite;
@@ -156,37 +154,5 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         header('Content-type: text/php');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         return file_get_contents($path . $filename);
-    }
-
-    function getSitesForAutocompleter()
-    {
-        $pattern = Common::getRequestVar('term');
-        $sites = API::getInstance()->getPatternMatchSites($pattern);
-        $pattern = str_replace('%', '', $pattern);
-        if (!count($sites)) {
-            $results[] = array('label' => Piwik::translate('SitesManager_NotFound') . "&nbsp;<span class='autocompleteMatched'>$pattern</span>.", 'id' => '#');
-        } else {
-            if (strpos($pattern, '/') !== false
-                && strpos($pattern, '\\/') === false
-            ) {
-                $pattern = str_replace('/', '\\/', $pattern);
-            }
-            foreach ($sites as $s) {
-                $siteName = Site::getNameFor($s['idsite']);
-                $label = $siteName;
-                if (strlen($pattern) > 0) {
-                    @preg_match_all("/$pattern+/i", $label, $matches);
-                    if (is_array($matches[0]) && count($matches[0]) >= 1) {
-                        foreach ($matches[0] as $match) {
-                            $label = str_replace($match, '<span class="autocompleteMatched">' . $match . '</span>', $siteName);
-                        }
-                    }
-                }
-                $results[] = array('label' => $label, 'id' => $s['idsite'], 'name' => $siteName);
-            }
-        }
-
-        Json::sendHeaderJSON();
-        print Common::json_encode($results);
     }
 }

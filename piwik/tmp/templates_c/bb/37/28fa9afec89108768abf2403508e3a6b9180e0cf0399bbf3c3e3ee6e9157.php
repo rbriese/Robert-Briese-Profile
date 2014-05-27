@@ -16,14 +16,16 @@ class __TwigTemplate_bb3728fa9afec89108768abf2403508e3a6b9180e0cf0399bbf3c3e3ee6
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<div id=\"topBars\">
+        echo call_user_func_array($this->env->getFunction('postEvent')->getCallable(), array("Template.beforeTopBar", (isset($context["userAlias"]) ? $context["userAlias"] : $this->getContext($context, "userAlias")), (isset($context["userLogin"]) ? $context["userLogin"] : $this->getContext($context, "userLogin")), (isset($context["topMenu"]) ? $context["topMenu"] : $this->getContext($context, "topMenu"))));
+        echo "
+<div id=\"topBars\">
     ";
-        // line 2
-        $this->env->loadTemplate("@CoreHome/_topBarHelloMenu.twig")->display($context);
         // line 3
+        $this->env->loadTemplate("@CoreHome/_topBarHelloMenu.twig")->display($context);
+        // line 4
         echo "    ";
         $this->env->loadTemplate("@CoreHome/_topBarTopMenu.twig")->display($context);
-        // line 4
+        // line 5
         echo "</div>
 ";
     }
@@ -40,6 +42,6 @@ class __TwigTemplate_bb3728fa9afec89108768abf2403508e3a6b9180e0cf0399bbf3c3e3ee6
 
     public function getDebugInfo()
     {
-        return array (  63 => 9,  49 => 7,  33 => 4,  59 => 8,  52 => 17,  48 => 15,  21 => 3,  28 => 5,  24 => 3,  132 => 36,  113 => 30,  108 => 28,  104 => 27,  96 => 25,  92 => 24,  88 => 23,  79 => 21,  77 => 20,  70 => 15,  62 => 13,  46 => 9,  31 => 3,  27 => 4,  23 => 3,  19 => 1,  134 => 43,  131 => 42,  127 => 34,  124 => 33,  121 => 32,  114 => 20,  112 => 19,  107 => 16,  105 => 15,  100 => 26,  87 => 9,  84 => 22,  81 => 7,  74 => 47,  72 => 19,  68 => 44,  66 => 42,  60 => 39,  55 => 36,  53 => 33,  50 => 32,  41 => 11,  38 => 7,  36 => 26,  32 => 24,  30 => 6,  22 => 2,  56 => 12,  54 => 11,  51 => 10,  47 => 31,  45 => 30,  42 => 6,  40 => 5,  37 => 10,  34 => 3,  29 => 2,);
+        return array (  26 => 4,  63 => 9,  49 => 7,  33 => 4,  52 => 17,  48 => 15,  21 => 3,  24 => 3,  144 => 38,  138 => 36,  131 => 33,  128 => 32,  121 => 31,  116 => 29,  104 => 26,  100 => 25,  96 => 24,  92 => 23,  87 => 22,  85 => 21,  80 => 20,  77 => 15,  71 => 14,  68 => 13,  62 => 12,  59 => 8,  44 => 8,  35 => 6,  31 => 3,  27 => 4,  23 => 3,  19 => 1,  139 => 46,  136 => 35,  132 => 37,  129 => 36,  126 => 35,  119 => 22,  117 => 21,  112 => 28,  110 => 17,  108 => 27,  102 => 13,  89 => 9,  83 => 7,  75 => 48,  72 => 47,  70 => 45,  66 => 44,  60 => 41,  55 => 38,  53 => 10,  50 => 9,  41 => 11,  38 => 29,  36 => 28,  32 => 26,  30 => 7,  22 => 2,  56 => 12,  54 => 11,  51 => 10,  47 => 33,  45 => 32,  42 => 6,  40 => 5,  37 => 10,  34 => 3,  29 => 5,);
     }
 }

@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik_Plugins
- * @package CoreAdminHome
  */
 namespace Piwik\Plugins\CoreAdminHome;
 
@@ -18,7 +16,10 @@ use Piwik\Config;
 use Piwik\DataTable\Renderer\Json;
 use Piwik\Menu\MenuTop;
 use Piwik\Nonce;
+use Piwik\Option;
 use Piwik\Piwik;
+use Piwik\Plugins\CorePluginsAdmin\UpdateCommunication;
+use Piwik\Plugins\CustomVariables\CustomVariables;
 use Piwik\Plugins\LanguagesManager\API as APILanguagesManager;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
 use Piwik\Plugins\SitesManager\API as APISitesManager;
@@ -30,7 +31,6 @@ use Piwik\View;
 
 /**
  *
- * @package CoreAdminHome
  */
 class Controller extends \Piwik\Plugin\ControllerAdmin
 {
@@ -47,23 +47,18 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         Piwik::checkUserHasSomeAdminAccess();
         $view = new View('@CoreAdminHome/generalSettings');
 
-        if (Piwik::isUserIsSuperUser()) {
+        if (Piwik::hasUserSuperUserAccess()) {
             $this->handleGeneralSettingsAdmin($view);
 
-            $trustedHosts = array();
-            if (isset(Config::getInstance()->General['trusted_hosts'])) {
-                $trustedHosts = Config::getInstance()->General['trusted_hosts'];
-            }
-            $view->trustedHosts = $trustedHosts;
-
-            $view->branding = Config::getInstance()->branding;
+            $view->trustedHosts = Url::getTrustedHostsFromConfig();
 
             $logo = new CustomLogo();
+            $view->branding       = array('use_custom_logo' => $logo->isEnabled());
             $view->logosWriteable = $logo->isCustomLogoWritable();
-            $view->pathUserLogo = CustomLogo::getPathUserLogo();
+            $view->pathUserLogo      = CustomLogo::getPathUserLogo();
             $view->pathUserLogoSmall = CustomLogo::getPathUserLogoSmall();
-            $view->pathUserLogoSVG = CustomLogo::getPathUserSvgLogo();
-            $view->pathUserLogoDirectory = dirname($view->pathUserLogo) . '/';
+            $view->pathUserLogoSVG   = CustomLogo::getPathUserSvgLogo();
+            $view->pathUserLogoDirectory = realpath(dirname($view->pathUserLogo) . '/');
         }
 
         $view->language = LanguagesManager::getLanguageCodeForCurrentUser();
@@ -177,25 +172,19 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     public function setGeneralSettings()
     {
-        Piwik::checkUserIsSuperUser();
+        Piwik::checkUserHasSuperUserAccess();
         $response = new ResponseBuilder(Common::getRequestVar('format'));
         try {
             $this->checkTokenInUrl();
 
             $this->saveGeneralSettings();
 
-            // update trusted host settings
-            $trustedHosts = Common::getRequestVar('trustedHosts', false, 'json');
-            if ($trustedHosts !== false) {
-                Url::saveTrustedHostnameInConfig($trustedHosts);
+            $customLogo = new CustomLogo();
+            if (Common::getRequestVar('useCustomLogo', '0')) {
+                $customLogo->enable();
+            } else {
+                $customLogo->disable();
             }
-
-            // update branding settings
-            $branding = Config::getInstance()->branding;
-            $branding['use_custom_logo'] = Common::getRequestVar('useCustomLogo', '0');
-            Config::getInstance()->branding = $branding;
-
-            Config::getInstance()->forceSave();
 
             $toReturn = $response->getResponse();
         } catch (Exception $e) {
@@ -222,6 +211,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
         $view->defaultReportSiteName = Site::getNameFor($view->idSite);
         $view->defaultSiteRevenue = \Piwik\MetricsFormatter::getCurrencySymbol($view->idSite);
+        $view->maxCustomVariables = CustomVariables::getMaxCustomVariables();
 
         $allUrls = APISitesManager::getInstance()->getSiteUrlsFromId($view->idSite);
         if (isset($allUrls[1])) {
@@ -268,7 +258,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     public function uploadCustomLogo()
     {
-        Piwik::checkUserIsSuperUser();
+        Piwik::checkUserHasSuperUserAccess();
 
         $logo = new CustomLogo();
         $success = $logo->copyUploadedLogoToFilesystem();
@@ -279,14 +269,14 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         return '0';
     }
 
-    private function isGeneralSettingsAdminEnabled()
+    static public function isGeneralSettingsAdminEnabled()
     {
         return (bool) Config::getInstance()->General['enable_general_settings_admin'];
     }
 
     private function saveGeneralSettings()
     {
-        if(!$this->isGeneralSettingsAdminEnabled()) {
+        if(!self::isGeneralSettingsAdminEnabled()) {
             // General settings + Beta channel + SMTP settings is disabled
             return;
         }
@@ -313,12 +303,29 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         $mail['encryption'] = Common::getRequestVar('mailEncryption', '');
 
         Config::getInstance()->mail = $mail;
+
+        // update trusted host settings
+        $trustedHosts = Common::getRequestVar('trustedHosts', false, 'json');
+        if ($trustedHosts !== false) {
+            Url::saveTrustedHostnameInConfig($trustedHosts);
+        }
+        Config::getInstance()->forceSave();
+
+        $pluginUpdateCommunication = new UpdateCommunication();
+        if (Common::getRequestVar('enablePluginUpdateCommunication', '0', 'int')) {
+            $pluginUpdateCommunication->enable();
+        } else {
+            $pluginUpdateCommunication->disable();
+        }
     }
 
     private function handleGeneralSettingsAdmin($view)
     {
         // Whether to display or not the general settings (cron, beta, smtp)
-        $view->isGeneralSettingsAdminEnabled = $this->isGeneralSettingsAdminEnabled();
+        $view->isGeneralSettingsAdminEnabled = self::isGeneralSettingsAdminEnabled();
+        if($view->isGeneralSettingsAdminEnabled) {
+            $this->displayWarningIfConfigFileNotWritable();
+        }
 
         $enableBrowserTriggerArchiving = Rules::isBrowserTriggerEnabled();
         $todayArchiveTimeToLive = Rules::getTodayArchiveTimeToLive();
@@ -332,10 +339,12 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         $view->todayArchiveTimeToLive = $todayArchiveTimeToLive;
         $view->enableBrowserTriggerArchiving = $enableBrowserTriggerArchiving;
 
-
         $view->enableBetaReleaseCheck = Config::getInstance()->Debug['allow_upgrades_to_beta'];
         $view->mail = Config::getInstance()->mail;
-        $this->displayWarningIfConfigFileNotWritable();
+
+        $pluginUpdateCommunication = new UpdateCommunication();
+        $view->canUpdateCommunication              = $pluginUpdateCommunication->canBeEnabled();
+        $view->enableSendPluginUpdateCommunication = $pluginUpdateCommunication->isEnabled();
     }
 
 
