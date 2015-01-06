@@ -19,6 +19,7 @@ trusted_hosts[] = "www.briese-ssc.com"
 trusted_hosts[] = "www.briese-home.com"
 trusted_hosts[] = "192.168.0.43"
 trusted_hosts[] = "192.168.0.30"
+trusted_hosts[] = "192.168.2.101"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Login"
