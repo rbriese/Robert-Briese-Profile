@@ -13,6 +13,7 @@ proxy_client_headers[] = "HTTP_CF_CONNECTING_IP"
 proxy_client_headers[] = "HTTP_X_FORWARDED_FOR"
 salt = "8bf35e47b10bc33451942cd7ea2a6caa"
 trusted_hosts[] = "www.briese-ssc.com"
+trusted_hosts[] = "192.168.2.101"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Login"
